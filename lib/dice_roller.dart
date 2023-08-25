@@ -13,13 +13,17 @@ class DiceRoller extends StatefulWidget {
 
 class _DiceRollerState extends State<DiceRoller> {
   var diceActive = 'assets/images/dice-2.png';
+  var diceActive2 = 'assets/images/dice-4.png';
+
   final randomGen = Random();
 
   void rollDice() {
     var diceRoll = randomGen.nextInt(6) + 1;
+    var diceRoll2 = randomGen.nextInt(6) + 1;
 
     setState(() {
       diceActive = 'assets/images/dice-$diceRoll.png';
+      diceActive2 = 'assets/images/dice-$diceRoll2.png';
     });
   }
 
@@ -28,21 +32,15 @@ class _DiceRollerState extends State<DiceRoller> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset(
-          diceActive,
-          width: 200,
-        ),
-        const SizedBox(
-          height: 40,
+        TextButton(
+          onPressed: rollDice,
+          style: TextButton.styleFrom(),
+          child: Image.asset(diceActive),
         ),
         TextButton(
           onPressed: rollDice,
-          style: TextButton.styleFrom(
-            backgroundColor: const Color.fromRGBO(243, 132, 255, 1),
-            padding:
-                const EdgeInsets.only(top: 10, bottom: 10, left: 50, right: 50),
-          ),
-          child: const StyledText('Roll', Color.fromRGBO(255, 242, 212, 1), 30),
+          style: TextButton.styleFrom(),
+          child: Image.asset(diceActive2),
         ),
       ],
     );
